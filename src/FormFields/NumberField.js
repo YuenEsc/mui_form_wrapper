@@ -1,23 +1,9 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
 import { Controller } from 'react-hook-form';
-import { TextField, InputAdornment, makeStyles, } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import WithInputLabel from "./WithInputLabel";
-
-const useStyles = makeStyles({
-  root: {
-    '& .MuiInputBase-input': {
-      display: 'flex',
-      padding: '8px 12px',
-      borderRadius: 4,
-      alignItems: 'center',
-      backgroundColor: '#ffffff',
-      border: '1px solid #dfe1e6',
-      boxShadow: '0 1px 1px rgba(0,0,0,.08)',
-    }
-  }
-});
+import StyledTextField from "./StyledTextField";
 
 const NumberField = ({
   name,
@@ -26,7 +12,7 @@ const NumberField = ({
   placeholder = "0",
   size = "small",
   autocomplete = "off",
-  thousandsSeparator = true,
+  thousandSeparator = true,
   decimalSeparator = ".",
   decimalScale = 0,
   variant = "outlined",
@@ -37,11 +23,9 @@ const NumberField = ({
   isNumericString = false,
   InputProps= undefined,
 }) => {
-  const classes = useStyles();
   return (
     <WithInputLabel label={label} required={required || rules?.required === true}>
       <Controller
-        classes={classes.root}
         name={name}
         control={control}
         rules={!!rules
@@ -55,9 +39,9 @@ const NumberField = ({
               placeholder={placeholder}
               size={size}
               autoComplete={autocomplete}
-              customInput={TextField}
+              customInput={StyledTextField}
               InputProps={InputProps}
-              thousandsSeparator={thousandsSeparator}
+              thousandSeparator={thousandSeparator}
               decimalSeparator={decimalSeparator}
               decimalScale={decimalScale}
               variant={variant}
@@ -80,7 +64,7 @@ NumberField.propTypes = {
   size: PropTypes.oneOf(['small','medium']),
   autocomplete: PropTypes.string,
   dollarPrefix: PropTypes.bool,
-  thousandsSeparator: PropTypes.bool,
+  thousandSeparator: PropTypes.bool,
   decimalSeparator: PropTypes.oneOf([".",",", false, true]),
   variant: PropTypes.oneOf(["filled","outlined","standard"]),
   allowNegative: PropTypes.bool,

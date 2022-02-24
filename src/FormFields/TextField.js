@@ -1,12 +1,12 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { TextField as MuiTextField, makeStyles, } from '@material-ui/core';
+import { TextField as MuiTextField, withStyles, } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import WithInputLabel from "./WithInputLabel";
 
-const useStyles = makeStyles({
+const StyledTextField = withStyles({
   root: {
-    '& .MuiInputBase-input': {
+    '.MuiInputBase-input':{
       display: 'flex',
       padding: '8px 12px',
       borderRadius: 4,
@@ -14,9 +14,23 @@ const useStyles = makeStyles({
       backgroundColor: '#ffffff',
       border: '1px solid #dfe1e6',
       boxShadow: '0 1px 1px rgba(0,0,0,.08)',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        border: '1px solid #dfe1e6',
+        boxShadow: '0 1px 1px rgba(0,0,0,.08)',
+      },
+      '&:hover fieldset': {
+        border: '1px solid #dfe1e6',
+        boxShadow: '0 1px 1px rgba(0,0,0,.08)',
+      },
+      '&.Mui-focused fieldset': {
+        border: '1px solid #dfe1e6',
+        boxShadow: '0 1px 1px rgba(0,0,0,.08)',
+      },
     }
-  }
-});
+  },
+})(MuiTextField);
 
 const TextField = ({
  name,
@@ -31,11 +45,9 @@ const TextField = ({
  fullWidth= false,
  InputProps= undefined,
 }) => {
-  const classes = useStyles();
   return (
     <WithInputLabel label={label} required={required || rules?.required === true}>
       <Controller
-        classes={classes.root}
         name={name}
         control={control}
         rules={!!rules
@@ -45,11 +57,11 @@ const TextField = ({
           {required: required || rules?.required === true}}
         render={
           ({field}) =>
-            <MuiTextField
+            <StyledTextField
               placeholder={placeholder}
               size={size}
               autoComplete={autocomplete}
-              InputProps={InputProps}
+              InputProps={{...InputProps }}
               variant={variant}
               {...field}
               fullWidth={fullWidth}

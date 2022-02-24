@@ -5,11 +5,15 @@ import { InputLabel, makeStyles } from "@material-ui/core";
 const useStyles = makeStyles({
   root: {
     textAlign: 'left',
+    fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 12,
     lineHeight: '24px',
-    color: '#6b778c',
+    color: '#7A869A',
+    '& .MuiFormLabel-asterisk': {
+      color: '#aa2b2b'
+    }
   }
 })
 
@@ -20,7 +24,7 @@ const WithInputLabel = ({children, label = undefined, required = false}) => {
       ?
       <>
         <InputLabel
-          classes={{root: classes.root}}
+          className={classes.root}
           required={required}
           shrink={false}
         >

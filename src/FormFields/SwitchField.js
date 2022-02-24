@@ -19,7 +19,7 @@ const SwitchField = ({ name, rules, label, control }) => {
                 width={32}
                 height={16}
                 handleDiameter={10}
-                checked={field.value}
+                checked={field?.value || false}
                 {...field}
               />
             </WithSwitchLabel>

@@ -11,7 +11,7 @@ const PriceField = ({
   size = "small",
   autocomplete = "off",
   dollarPrefix= true,
-  thousandsSeparator = true,
+  thousandSeparator = true,
   decimalSeparator = ".",
   decimalScale = 2,
   variant = "outlined",
@@ -29,7 +29,7 @@ const PriceField = ({
       placeholder={placeholder}
       size={size}
       autocomplete={autocomplete}
-      thousandsSeparator={thousandsSeparator}
+      thousandSeparator={thousandSeparator}
       decimalSeparator={decimalSeparator}
       decimalScale={decimalScale}
       variant={variant}
@@ -53,7 +53,7 @@ PriceField.propTypes = {
   size: PropTypes.oneOf(['small','medium']),
   autocomplete: PropTypes.string,
   dollarPrefix: PropTypes.bool,
-  thousandsSeparator: PropTypes.bool,
+  thousandSeparator: PropTypes.bool,
   decimalSeparator: PropTypes.oneOf([".",",", false, true]),
   variant: PropTypes.oneOf(["filled","outlined","standard"]),
   allowNegative: PropTypes.bool,

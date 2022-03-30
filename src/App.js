@@ -97,21 +97,7 @@ function App() {
               fullWidth
             />
           </Grid>
-          <Grid item xs={6}>
-            <MultiSelectAutocompleteField
-              control={control}
-              name="materials"
-              label="Disposal Fee"
-              placeholder="Disposal Fee"
-              options={[
-                {name: 'Bryan May', value: 'bryan'},
-                {name: 'John Deacon', value: 'john'},
-                {name: 'Roger Taylor', value: 'roger'},
-                {name: 'Freddie Mercury', value: 'freddie'},
-              ]}
-              getOptionLabel={({name}) => name}
-            />
-          </Grid>
+
           <Grid item xs={6}>
             <SelectField
               control={control}

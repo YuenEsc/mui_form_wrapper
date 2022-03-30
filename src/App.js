@@ -1,12 +1,16 @@
-import {Grid, Button, Container} from '@material-ui/core';
+import {Grid, Button, Container, makeStyles} from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import PriceField from "./FormFields/PriceField";
-import SwitchField from "./FormFields/SwitchField";
-import NumberField from "./FormFields/NumberField";
-import TextField from "./FormFields/TextField";
-import MultiSelectAutocompleteField from "./FormFields/MultiSelectAutocompleteField";
+import { PriceField, NumberField, TextField, SwitchField, MultiSelectAutocompleteField, SelectField } from './form-fields'
+import { HHButton } from './buttons';
+
+const useStyles = makeStyles(theme=>({
+  gap: {
+    marginRight: theme.spacing(2)
+  }
+}))
 
 function App() {
+  const classes = useStyles()
   const { control, handleSubmit, watch, formState: { errors } } = useForm({
     defaultValues: {
       disposalMinFee: '',
@@ -24,6 +28,20 @@ function App() {
     <Container fixed >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <HHButton className={classes.gap} variant="contained" color="primary">
+              Contained (Primary)
+            </HHButton>
+            <HHButton className={classes.gap} variant="contained" color="default">
+              Contained (default)
+            </HHButton>
+            <HHButton className={classes.gap} variant="outlined" color="primary">
+              Outlined (Primary)
+            </HHButton>
+            <HHButton className={classes.gap} variant="outlined" color="default">
+              Outlined (default)
+            </HHButton>
+          </Grid>
           <Grid item xs={6}>
             <PriceField
               label="Minimum Fee"
@@ -94,10 +112,25 @@ function App() {
               getOptionLabel={({name}) => name}
             />
           </Grid>
-          <Grid item xs={6} >
-            <Button type="submit">
+          <Grid item xs={6}>
+            <SelectField
+              control={control}
+              name="materials"
+              label="Disposal Fee"
+              placeholder="Disposal Fee"
+              options={[
+                {label: 'Bryan May', value: 'bryan'},
+                {label: 'John Deacon', value: 'john'},
+                {label: 'Roger Taylor', value: 'roger'},
+                {label: 'Freddie Mercury', value: 'freddie'},
+              ]}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} container alignContent="flex-end" justifyContent="flex-end">
+            <HHButton type="submit" variant="contained" color="primary">
               Submit
-            </Button>
+            </HHButton>
           </Grid>
         </Grid>
       </form>

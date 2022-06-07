@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react';
+import { Tab } from '@mui/material';
+import {TabContext, TabList, TabPanel } from "@mui/lab";
+import Box from '@mui/material/Box';
+import FormTab from "./FormTab";
+import SimpleTab from "./SimpleTab";
+
+export default function TabsWrappedLabel() {
+  const [value, setValue] = React.useState('one');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Box sx={{ width: '100%' }}>
+      <TabContext value={value}>
+        <TabList
+          value={value}
+          onChange={handleChange}
+          aria-label="wrapped label tabs example"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Tab
+            value="one"
+            label="Form tab"
+          />
+          <Tab value="two" label="Simple Tab" />
+        </TabList>
+        <TabPanel value="one"><FormTab /></TabPanel>
+        <TabPanel value="two"><SimpleTab/></TabPanel>
+      </TabContext>
+    </Box>
   );
 }
-
-export default App;

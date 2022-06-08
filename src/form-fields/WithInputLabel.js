@@ -1,36 +1,34 @@
-import { InputLabel, styled } from '@mui/material';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { InputLabel, styled } from '@mui/material'
+import PropTypes from 'prop-types'
 
-const HHInputLabel = styled(InputLabel)(({theme, size})=>({
+const HHInputLabel = styled(InputLabel)(({ theme }) => ({
   textAlign: 'left',
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: 500,
-  fontSize: 12,
+  ...theme.typography.subtitle2,
   lineHeight: '24px',
-  color: '#7A869A',
+  color: theme.palette.text.secondary,
   '& .MuiFormLabel-asterisk': {
-    color: '#aa2b2b'
-  }
-}));
+    color: '#aa2b2b',
+  },
+}))
 
-const WithInputLabel = ({children, label = undefined, required = false, endIcon}) => {
-  return (<>
-    {!!label
-      ?
-      <>
-        <HHInputLabel
-          required={required}
-          shrink={false}
-        >
-          {label}{endIcon}
-        </HHInputLabel>
-        {children}
-      </>
-      :
-      children}
-  </>)
-};
+const WithInputLabel = ({ children, label = undefined, required = false, endIcon }) => {
+  return (
+    <>
+      {label ? (
+        <>
+          <HHInputLabel required={required} shrink={false}>
+            {label}
+            {endIcon}
+          </HHInputLabel>
+          {children}
+        </>
+      ) : (
+        children
+      )}
+    </>
+  )
+}
 
 WithInputLabel.propTypes = {
   children: PropTypes.node,
@@ -39,4 +37,4 @@ WithInputLabel.propTypes = {
   endIcon: PropTypes.node,
 }
 
-export default WithInputLabel;
+export default WithInputLabel

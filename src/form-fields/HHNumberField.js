@@ -1,22 +1,21 @@
-import React from 'react';
-import HHTextField from "./HHTextField";
-import NumberFormat from "react-number-format";
-import {InputAdornment} from "@mui/material";
-import PropTypes from "prop-types";
-import HHFormPriceField from "./HHFormPriceField";
+import React from 'react'
+import NumberFormat from 'react-number-format'
+import { InputAdornment } from '@mui/material'
+import PropTypes from 'prop-types'
+import HHTextField from './HHTextField'
 
-const HHNumberField = ({dollarPrefix= false, ...rest }) => {
+const HHNumberField = ({ dollarPrefix = false, ...rest }) => {
   return (
     <NumberFormat
       customInput={HHTextField}
       {...rest}
       InputProps={{ ...rest?.InputProps, startAdornment: dollarPrefix && <InputAdornment position="start">$</InputAdornment> }}
     />
-  );
-};
+  )
+}
 
-HHFormPriceField.propTypes = {
+HHNumberField.propTypes = {
   dollarPrefix: PropTypes.bool,
-};
+}
 
-export default HHNumberField;
+export default HHNumberField

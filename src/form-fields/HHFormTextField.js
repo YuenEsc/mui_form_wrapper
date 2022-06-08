@@ -1,34 +1,34 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Controller } from 'react-hook-form';
-import HHTextField from "./HHTextField";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Controller } from 'react-hook-form'
+import HHTextField from './HHTextField'
 
 const HHFormTextField = ({
- sx = undefined,
- name,
- control,
- disabled = false,
- label = undefined,
- placeholder = undefined,
- size = 'medium',
- autocomplete = 'off',
- variant = 'outlined',
- rules = undefined,
- required = false,
- fullWidth = false,
- InputProps = undefined,
- endLabelIcon = undefined,
- trimLeft = false,
- regexValidators = [],
- onKeyPress = () => {},
+  sx = undefined,
+  name,
+  control,
+  disabled = false,
+  label = undefined,
+  placeholder = undefined,
+  size = 'medium',
+  autocomplete = 'off',
+  variant = 'outlined',
+  rules = undefined,
+  required = false,
+  fullWidth = false,
+  InputProps = undefined,
+  endLabelIcon = undefined,
+  trimLeft = false,
+  regexValidators = [],
+  onKeyPress = () => {},
 }) => {
   return (
     <Controller
       name={name}
       control={control}
-      rules={!!rules ? { ...rules, required: required || rules?.required === true } : { required: required || rules?.required === true }}
+      rules={rules ? { ...rules, required: required || rules?.required === true } : { required: required || rules?.required === true }}
       render={({ field }) => {
-        const { ref, onChange, onBlur, ...rest } = field;
+        const { ref, onChange, onBlur, ...rest } = field
         return (
           <HHTextField
             endIcon={endLabelIcon}
@@ -43,15 +43,15 @@ const HHFormTextField = ({
             onChange={e => {
               if (typeof e.target.value === 'string') {
                 if (trimLeft) {
-                  e.target.value = e.target.value.trimLeft();
+                  e.target.value = e.target.value.trimLeft()
                 }
                 if (regexValidators.length > 0) {
-                  const results = regexValidators.map(regex => regex.test(e.target.value));
-                  const isValid = results.reduce((a, b) => a && b, true);
-                  if (!isValid) return;
+                  const results = regexValidators.map(regex => regex.test(e.target.value))
+                  const isValid = results.reduce((a, b) => a && b, true)
+                  if (!isValid) return
                 }
               }
-              onChange(e);
+              onChange(e)
             }}
             autoComplete={autocomplete}
             InputProps={{ ...InputProps, onBlur }}
@@ -60,14 +60,14 @@ const HHFormTextField = ({
             {...rest}
             fullWidth={fullWidth}
           />
-        );
+        )
       }}
     />
-  );
-};
+  )
+}
 
 HHFormTextField.propTypes = {
-  className: PropTypes.string,
+  sx: PropTypes.object,
   name: PropTypes.string.isRequired,
   control: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
@@ -84,6 +84,6 @@ HHFormTextField.propTypes = {
   trimLeft: PropTypes.bool,
   regexValidators: PropTypes.array,
   onKeyPress: PropTypes.func,
-};
+}
 
-export default HHFormTextField;
+export default HHFormTextField

@@ -12,12 +12,12 @@ const HHInputLabel = styled(InputLabel)(({ theme }) => ({
   },
 }))
 
-const WithInputLabel = ({ children, label = undefined, required = false, endIcon }) => {
+const WithInputLabel = ({ children, label = undefined, required = false, endIcon, error = '' }) => {
   return (
     <>
       {label ? (
         <>
-          <HHInputLabel required={required} shrink={false}>
+          <HHInputLabel required={required} shrink={false} error={error}>
             {label}
             {endIcon}
           </HHInputLabel>
@@ -35,6 +35,7 @@ WithInputLabel.propTypes = {
   label: PropTypes.string,
   required: PropTypes.bool,
   endIcon: PropTypes.node,
+  error: PropTypes.string,
 }
 
 export default WithInputLabel

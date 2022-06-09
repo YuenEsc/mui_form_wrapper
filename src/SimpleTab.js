@@ -2,6 +2,8 @@ import {Container, Grid, MenuItem} from "@mui/material";
 import HHButton from "./HHButton";
 import { HHTextField, HHNumberField, HHSwitchField} from "./form-fields";
 import {useState} from "react";
+import HHAutocompleteField from "./form-fields/HHAutocompleteField";
+import HHMultiSelectAutocompleteField from "./form-fields/HHMultiSelectAutocompleteField";
 
 
 const SimpleTab = () => {
@@ -13,7 +15,8 @@ const SimpleTab = () => {
       costPlus: false,
       autoLink: false,
       disposalFeeName: '',
-      materials: [],
+      artist: undefined,
+      albums: [],
   });
   const onSubmit = e => {
     e.preventDefault();
@@ -103,13 +106,16 @@ const SimpleTab = () => {
               }}
             />
           </Grid>
-
-          {<Grid item xs={6}>
+          <Grid item xs={6}>
             <HHTextField
-              label="Disposal Fee"
+              label="Select artist"
               placeholder="Disposal Fee"
               fullWidth
               select
+              value={state.disposalFeeName}
+              onChange={e => {
+                setState(p=>({...p, disposalFeeName: e.target.value}));
+              }}
             >
               {[
                 {label: 'Bryan May', value: 'bryan'},
@@ -118,7 +124,50 @@ const SimpleTab = () => {
                 {label: 'Freddie Mercury', value: 'freddie'},
               ].map(({label, value})=><MenuItem value={value}>{label}</MenuItem>)}
             </HHTextField>
-          </Grid>}
+          </Grid>
+          <Grid item xs={6}>
+            <HHAutocompleteField
+              label="Select artist"
+              placeholder="Disposal Fee"
+              fullWidth
+              variant="small"
+              options={[
+                {label: 'Bryan May', value: 'bryan'},
+                {label: 'John Deacon', value: 'john'},
+                {label: 'Roger Taylor', value: 'roger'},
+                {label: 'Freddie Mercury', value: 'freddie'},
+              ]}
+              isOptionEqualToValue={(option,value)=>option.value === value?.value}
+              value={state.artist}
+              onChange={e => {
+                setState(p=>({...p, artist: e.target.value}));
+              }}
+              // renderOption={(option, props)=>(<MenuItem key={option.label}>{option.label}</MenuItem>)}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <HHMultiSelectAutocompleteField
+              label="Select your albums"
+              placeholder="Disposal Fee"
+              fullWidth
+              variant="small"
+              value={state?.albums}
+              onChange={(e,item) => {
+                setState(p=>({...p, albums: item}));
+              }}
+              getOptionLabel={(option)=>{
+                return option?.label
+              }}
+              isOptionEqualToValue={(option,value)=>option.value === value?.value}
+              options={[
+                {label: 'Death Magnetic', value: 'death_magnetic'},
+                {label: 'Black Album', value: 'black_album'},
+                {label: 'News of the world', value: 'news_of_the_world'},
+                {label: 'Stadium Arcadium', value: 'stadium_arcadium'},
+                {label: 'Let\'s dance', value: 'lets_dance'},
+              ]}
+            />
+          </Grid>
           <Grid item xs={12} container alignContent="flex-end" justifyContent="flex-end">
             <HHButton type="submit" variant="contained" color="primary">
               Submit

@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import WithInputLabel from './WithInputLabel'
 import StyledTextField from './StyledTextField'
+import {KeyboardArrowDownRounded} from "@mui/icons-material";
 
-const HHTextField = ({ label, required, endIcon, variant = 'outlined', ...rest }) => {
+const HHTextField = ({ label, disabled, required, endIcon, variant = 'outlined', error = '', showErrorMessage = false, SelectProps, ...rest }) => {
   return (
-    <WithInputLabel label={label} required={required} endIcon={endIcon}>
-      <StyledTextField variant={variant} {...rest} />
+    <WithInputLabel label={label} required={required} endIcon={endIcon} error={error} disabled={disabled}>
+      <StyledTextField disabled={disabled} variant={variant} {...rest} error={Boolean(error)} helperText={showErrorMessage && error} SelectProps={{...SelectProps, IconComponent: (props)=><KeyboardArrowDownRounded {...props}/>}} />
     </WithInputLabel>
   )
 }
@@ -16,6 +17,8 @@ HHTextField.propTypes = {
   required: PropTypes.bool,
   endIcon: PropTypes.node,
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  error: '',
+  showErrorMessage: PropTypes.bool,
 }
 
 export default HHTextField

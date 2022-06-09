@@ -1,8 +1,9 @@
 import { TextField, styled } from '@mui/material'
 
-const StyledTextField = styled(TextField)(({ theme, size }) => ({
+const StyledTextField = styled(TextField)(({ theme, size, disabled, }) => ({
   '& .MuiOutlinedInput-root': {
     height: size === 'small' ? 32 : 40,
+    backgroundColor: disabled ? theme.palette.background.disabled : theme.palette.background.paper
   },
   input: {
     '&::placeholder': {
@@ -12,7 +13,6 @@ const StyledTextField = styled(TextField)(({ theme, size }) => ({
     },
     ...theme.typography.body1,
     color: theme.palette.text.primary,
-    height: size === 'small' ? 32 : 40,
   },
 }))
 

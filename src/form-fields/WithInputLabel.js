@@ -17,7 +17,7 @@ const WithInputLabel = ({ children, label = undefined, required = false, endIcon
     <>
       {label ? (
         <>
-          <HHInputLabel required={required} shrink={false} error={error}>
+          <HHInputLabel required={required} shrink={false} error={Boolean(error)}>
             {label}
             {endIcon}
           </HHInputLabel>

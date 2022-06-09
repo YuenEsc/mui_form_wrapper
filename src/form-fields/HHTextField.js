@@ -17,7 +17,7 @@ HHTextField.propTypes = {
   required: PropTypes.bool,
   endIcon: PropTypes.node,
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
-  error: '',
+  error: PropTypes.string,
   showErrorMessage: PropTypes.bool,
 }
 

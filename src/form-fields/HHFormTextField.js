@@ -9,7 +9,7 @@ const HHFormTextField = ({
   control,
   disabled = false,
   label = undefined,
-  placeholder = undefined,
+  placeholder = '',
   size = 'medium',
   autocomplete = 'off',
   variant = 'outlined',

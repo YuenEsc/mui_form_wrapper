@@ -10,7 +10,7 @@ const HHFormSelectField = ({
   control,
   disabled = false,
   label = undefined,
-  placeholder = undefined,
+  placeholder = '',
   size = 'medium',
   autocomplete = 'off',
   variant = 'outlined',
@@ -43,7 +43,7 @@ const HHFormSelectField = ({
           select
         >
           {options.map(option => (
-            <MenuItem key={option.key} value={getOptionValue(option)}>
+            <MenuItem key={option?.key || `${name}-option-${getOptionLabel(label)}`} value={getOptionValue(option)}>
               {getOptionLabel(option)}
             </MenuItem>
           ))}

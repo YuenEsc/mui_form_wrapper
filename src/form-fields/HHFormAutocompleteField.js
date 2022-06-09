@@ -12,7 +12,7 @@ const HHFormAutocompleteField = ({
   control,
   disabled = false,
   label = undefined,
-  placeholder = undefined,
+  placeholder = '',
   size = 'medium',
   variant = 'outlined',
   rules = undefined,
@@ -80,7 +80,7 @@ const HHFormAutocompleteField = ({
                       }
                     }}
                     ref={ref}
-                    placeholder={Array.isArray(value) && value.length === 0 && placeholder}
+                    placeholder={Array.isArray(value) ? value.length === 0 && placeholder : ''}
                     variant={variant}
                     {...params}
                   />

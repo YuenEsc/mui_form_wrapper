@@ -7,7 +7,7 @@ import HHAutocompleteField from './HHAutocompleteField'
 const HHFormMultiSelectAutocompleteField = ({
   disabled = false,
   label = undefined,
-  placeholder = undefined,
+  placeholder = '',
   size = 'medium',
   variant = 'outlined',
   required = false,
@@ -58,7 +58,7 @@ const HHFormMultiSelectAutocompleteField = ({
       loading={loading}
       renderOption={({ className, ...rest }, option, { selected }) => {
         return (
-          <MenuItem disableGutters sx={{ paddingY: 0 }} {...rest}>
+          <MenuItem key={option?.key || `-option-${getOptionLabel(label)}`} disableGutters sx={{ paddingY: 0 }} {...rest}>
             <Checkbox size="small" checked={selected} />
             {getOptionLabel(option)}
           </MenuItem>

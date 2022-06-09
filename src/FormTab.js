@@ -1,11 +1,9 @@
 import {Container, Grid } from "@mui/material";
 import { useForm } from "react-hook-form";
 import HHButton from "./HHButton";
-import { HHFormTextField, HHFormSelectField, HHFormNumberField, HHFormPriceField, HHFormSwitchField} from "./form-fields";
+import { HHFormAutocompleteField, HHFormTextField, HHFormMultiSelectAutocompleteField, HHFormSelectField, HHFormNumberField, HHFormPriceField, HHFormSwitchField} from "./form-fields";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup'
-import HHFormAutocompleteField from "./form-fields/HHFormAutocompleteField";
-import HHFormMultiSelectAutocompleteField from "./form-fields/HHFormMultiSelectAutocompleteField";
 
 const schema = yup.object({
   disposalMinFee: yup.string().required(),

@@ -1,39 +1,39 @@
-import React from 'react';
-import { Controller } from 'react-hook-form';
-import PropTypes from 'prop-types';
-import StyledTextField from './StyledTextField';
-import StyledAutocomplete from "./StyledAutocomplete";
-import WithInputLabel from "./WithInputLabel";
-import {KeyboardArrowDownRounded} from "@mui/icons-material";
+import React from 'react'
+import { Controller } from 'react-hook-form'
+import PropTypes from 'prop-types'
+import { KeyboardArrowDownRounded } from '@mui/icons-material'
+import StyledTextField from './StyledTextField'
+import StyledAutocomplete from './StyledAutocomplete'
+import WithInputLabel from './WithInputLabel'
 
 const HHFormAutocompleteField = ({
- sx = undefined,
- name,
- control,
- disabled = false,
- label = undefined,
- placeholder = undefined,
- size = 'medium',
- variant = 'outlined',
- rules = undefined,
- required = false,
- fullWidth = false,
- options,
- noOptionsText,
- multiple = false,
- disableCloseOnSelect = false,
- getOptionLabel = x => x,
- isOptionEqualToValue = (option, value) => option === value,
- renderOption = undefined,
- renderTags = undefined,
- openOnFocus = false,
- loading = false,
- onChangeMiddleware = (onChange, item) => {
-   onChange(item);
- },
+  sx = undefined,
+  name,
+  control,
+  disabled = false,
+  label = undefined,
+  placeholder = undefined,
+  size = 'medium',
+  variant = 'outlined',
+  rules = undefined,
+  required = false,
+  fullWidth = false,
+  options,
+  noOptionsText,
+  multiple = false,
+  disableCloseOnSelect = false,
+  getOptionLabel = x => x,
+  isOptionEqualToValue = (option, value) => option === value,
+  renderOption = undefined,
+  renderTags = undefined,
+  openOnFocus = false,
+  loading = false,
+  onChangeMiddleware = (onChange, item) => {
+    onChange(item)
+  },
   debug = false,
 }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
   return (
     <WithInputLabel label={label} required={required || rules?.required === true}>
       <Controller
@@ -43,16 +43,16 @@ const HHFormAutocompleteField = ({
         render={props => {
           const {
             field: { onChange, onBlur, value, ref },
-          } = props;
+          } = props
           return (
             <StyledAutocomplete
               sx={sx}
               open={debug || open}
               onBlur={() => {
-                setOpen(false);
-                onBlur();
+                setOpen(false)
+                onBlur()
               }}
-              popupIcon={<KeyboardArrowDownRounded/>}
+              popupIcon={<KeyboardArrowDownRounded />}
               ref={ref}
               value={value}
               isOptionEqualToValue={isOptionEqualToValue}
@@ -69,14 +69,14 @@ const HHFormAutocompleteField = ({
               renderTags={renderTags}
               openOnFocus={openOnFocus}
               onChange={(event, item) => {
-                onChangeMiddleware(onChange, item);
+                onChangeMiddleware(onChange, item)
               }}
               renderInput={params => {
                 return (
                   <StyledTextField
                     onClick={() => {
                       if (!disabled) {
-                        setOpen(true);
+                        setOpen(true)
                       }
                     }}
                     ref={ref}
@@ -84,15 +84,15 @@ const HHFormAutocompleteField = ({
                     variant={variant}
                     {...params}
                   />
-                );
+                )
               }}
             />
-          );
+          )
         }}
       />
     </WithInputLabel>
-  );
-};
+  )
+}
 
 HHFormAutocompleteField.propTypes = {
   sx: PropTypes.string,
@@ -118,6 +118,6 @@ HHFormAutocompleteField.propTypes = {
   loading: PropTypes.bool,
   onChangeMiddleware: PropTypes.func,
   debug: PropTypes.bool,
-};
+}
 
-export default HHFormAutocompleteField;
+export default HHFormAutocompleteField

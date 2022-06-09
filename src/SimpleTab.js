@@ -1,10 +1,7 @@
 import {Container, Grid, MenuItem} from "@mui/material";
 import HHButton from "./HHButton";
-import { HHTextField, HHNumberField, HHSwitchField} from "./form-fields";
+import { HHTextField, HHNumberField, HHSwitchField, HHAutocompleteField, HHMultiSelectAutocompleteField } from "./form-fields";
 import {useState} from "react";
-import HHAutocompleteField from "./form-fields/HHAutocompleteField";
-import HHMultiSelectAutocompleteField from "./form-fields/HHMultiSelectAutocompleteField";
-
 
 const SimpleTab = () => {
   const [state, setState] = useState({

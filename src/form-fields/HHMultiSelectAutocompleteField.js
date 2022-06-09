@@ -2,17 +2,14 @@ import React from 'react'
 import { Checkbox, Chip, MenuItem } from '@mui/material'
 import PropTypes from 'prop-types'
 import { Close, KeyboardArrowDownRounded } from '@mui/icons-material'
-import HHFormAutocompleteField from './HHFormAutocompleteField'
+import HHAutocompleteField from './HHAutocompleteField'
 
 const HHFormMultiSelectAutocompleteField = ({
-  name,
-  control,
   disabled = false,
   label = undefined,
   placeholder = undefined,
   size = 'medium',
   variant = 'outlined',
-  rules = undefined,
   required = false,
   fullWidth = false,
   options,
@@ -22,42 +19,26 @@ const HHFormMultiSelectAutocompleteField = ({
   loading = false,
   getOptionLabel = x => x,
   getOptionSelected = (option, value) => option === value,
-  onChangeMiddleware = (onChange, item) => {
-    onChange(item)
-  },
   debug = false,
+  ...rest
 }) => {
   return (
-    <HHFormAutocompleteField
+    <HHAutocompleteField
       debug={debug}
       getOptionSelected={getOptionSelected}
-      name={name}
-      control={control}
       disabled={disabled}
+      required={required}
       label={label}
       placeholder={placeholder}
       size={size}
       variant={variant}
-      rules={rules}
-      required={required}
       fullWidth={fullWidth}
       options={options}
       popupIcon={<KeyboardArrowDownRounded />}
       noOptionsText={noOptionsText}
-      onChangeMiddleware={onChangeMiddleware}
       multiple
+      {...rest}
       disableCloseOnSelect={disableCloseOnSelect}
-      renderOption={({ className, ...rest }, option, { selected }) => {
-        return (
-          <MenuItem disableGutters sx={{ paddingY: 0 }} {...rest}>
-            <Checkbox size="small" checked={selected} />
-            {getOptionLabel(option)}
-          </MenuItem>
-        )
-      }}
-      getOptionLabel={getOptionLabel}
-      openOnFocus={openOnFocus}
-      loading={loading}
       renderTags={(value, getTagProps) => (
         <>
           {value?.length >= 1 && (
@@ -72,19 +53,27 @@ const HHFormMultiSelectAutocompleteField = ({
           {value?.length > 1 && <Chip sx={{ borderRadius: 1 }} size="small" label={`+${value.length - 1}`} deleteIcon={<Close />} />}
         </>
       )}
+      getOptionLabel={getOptionLabel}
+      openOnFocus={openOnFocus}
+      loading={loading}
+      renderOption={({ className, ...rest }, option, { selected }) => {
+        return (
+          <MenuItem disableGutters sx={{ paddingY: 0 }} {...rest}>
+            <Checkbox size="small" checked={selected} />
+            {getOptionLabel(option)}
+          </MenuItem>
+        )
+      }}
     />
   )
 }
 
 HHFormMultiSelectAutocompleteField.propTypes = {
-  name: PropTypes.string.isRequired,
-  control: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium']),
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
-  rules: PropTypes.object,
   required: PropTypes.bool,
   fullWidth: PropTypes.bool,
   options: PropTypes.array.isRequired,
